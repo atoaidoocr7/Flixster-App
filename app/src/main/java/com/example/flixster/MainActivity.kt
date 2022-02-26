@@ -14,18 +14,16 @@ private const val TAG = "Ato"
 
 class MainActivity : AppCompatActivity() {
     var movies = mutableListOf<RegularMovie>()
-    var posters= mutableListOf<PopularMovie>()
-    var objs = ArrayList<Any>()
-    lateinit var mvAdapter: ComplexRecycler
+    var posters= mutableListOf<String>()
+    lateinit var mvAdapter: MovieAdapter
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recycler)
-
-        mvAdapter = ComplexRecycler(this,objs)
+        mvAdapter = MovieAdapter(this,movies, posters)
         recyclerView.adapter = mvAdapter
-//
+
         recyclerView.layoutManager = LinearLayoutManager(this)
 
 
@@ -45,10 +43,9 @@ class MainActivity : AppCompatActivity() {
                 try{
                     Log.i(TAG,"SUCCESS: JSON DATA: $json")
                     val movieJsonArray = json.jsonObject.getJSONArray("results")
-//                    movies.addAll(RegularMovie.fromJsonArray(movieJsonArray))
-                    objs.addAll(RegularMovie.fromJsonArray(movieJsonArray))
+                    movies.addAll(RegularMovie.fromJsonArray(movieJsonArray))
                     Log.i(TAG,"MOVIE LIST WORKS: $movies")
-                    posters.addAll(PopularMovie.fromJsonArray(movieJsonArray))
+                    posters.addAll(RegularMovie.getLandscape(movieJsonArray))
                     Log.i(TAG, "BACK-DROP PATH: $posters")
                     mvAdapter.notifyDataSetChanged()
                 }catch(e: JSONException){
