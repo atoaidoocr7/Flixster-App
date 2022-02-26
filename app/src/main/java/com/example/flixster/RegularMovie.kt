@@ -1,20 +1,20 @@
 package com.example.flixster
 
-import android.icu.text.CaseMap
 import org.json.JSONArray
 
-data class Movie(val movieId: Int, private val posterPath:String, val title: String,
-                 val overView: String, val backdrop: String) {
+data class RegularMovie(val movieId: Int, private val posterPath:String, val title: String,
+                        val overView: String, val backdrop: String){
+
     val posterImageUrl = "https://image.tmdb.org/t/p/w342/$posterPath"
     val backDropUrl = "https://image.tmdb.org/t/p/w342/$backdrop"
 
     companion object{
 
-        fun fromJsonArray(movieJsonArray: JSONArray): List<Movie>{
-            val movies = mutableListOf<Movie>()
+        fun fromJsonArray(movieJsonArray: JSONArray): List<RegularMovie>{
+            val movies = mutableListOf<RegularMovie>()
             for(i in 0 until movieJsonArray.length()){
                 val movieJson = movieJsonArray.getJSONObject(i)
-                movies.add(Movie(
+                movies.add(RegularMovie(
                     movieJson.getInt("id"),
                     movieJson.getString("poster_path"),
                     movieJson.getString("title"),
@@ -33,6 +33,5 @@ data class Movie(val movieId: Int, private val posterPath:String, val title: Str
             }
             return arr;
         }
-
     }
 }

@@ -12,10 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 private  const val TAG = "MovieAdapter"
-class MovieAdapter(private val context: Context, private val movies: List<Movie>, private val posters: List<String>)
+class MovieAdapter(private val context: Context, private val movies: List<RegularMovie>, private val posters: List<String>)
     :RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
-
-
 
     //expensive operation
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -44,16 +42,10 @@ class MovieAdapter(private val context: Context, private val movies: List<Movie>
         return movies.size
     }
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-//        private val title = itemView.findViewById<TextView>(R.id.mvTitle)
-//        private val overview = itemView.findViewById<TextView>(R.id.mvOverview)
-//        private val poster = itemView.findViewById<TextView>(R.id.mvPoster)
         val title : TextView
         val overview: TextView
         val poster: ImageView
-//        fun bind(movie: Movie){
-//            title.text = movie.title
-//            overview.text = movie.overView
-//        }
+
         init{
             title = itemView.findViewById(R.id.mvTitle)
             overview = itemView.findViewById(R.id.mvOverview)
