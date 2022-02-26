@@ -2,12 +2,12 @@ package com.example.flixster
 
 import android.view.View
 import android.widget.ImageView
-
 import androidx.recyclerview.widget.RecyclerView
 
-class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-    val bigPoster : ImageView
+class ViewHolder2(itemView: View) : RecyclerView.ViewHolder(itemView){
+    val poster: ImageView
+
     init{
-        bigPoster = itemView.findViewById<ImageView>(R.id.bigPoster)
+        poster = itemView.findViewById(R.id.bigPoster)
     }
 }

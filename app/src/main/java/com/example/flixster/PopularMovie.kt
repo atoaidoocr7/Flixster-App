@@ -1,5 +1,4 @@
 package com.example.flixster
-
 import org.json.JSONArray
 
 data class PopularMovie(private val posterPath:String,
