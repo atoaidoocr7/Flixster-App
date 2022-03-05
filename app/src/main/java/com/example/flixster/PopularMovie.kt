@@ -12,10 +12,12 @@ data class PopularMovie(private val posterPath:String,
             val movies = mutableListOf<PopularMovie>()
             for(i in 0 until movieJsonArray.length()){
                 val curr = movieJsonArray.getJSONObject(i)
-                movies.add(PopularMovie(
-                    curr.getString("poster_path"),
-                    curr.getString("backdrop_path")
-                ))
+                if(curr.getInt("vote_average")>7){
+                    movies.add(PopularMovie(
+                        curr.getString("poster_path"),
+                        curr.getString("backdrop_path")
+                    ))
+                }
             }
             return movies
         }
